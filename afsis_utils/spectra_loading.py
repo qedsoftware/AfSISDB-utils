@@ -8,11 +8,12 @@ from pathlib import Path
 from pandas import DataFrame
 
 
-def change_ssn(raw_ssn: str) -> str:
-    return 'icr' + splitext(basename(raw_ssn))[0]
+def change_ssn(raw_ssn: str, prefix: str) -> str:
+    return prefix + splitext(basename(raw_ssn))[0]
 
 
 def parse_many_spectra(spectra_dir: str,
+                       prefix: str='',
                        wave_info=(501, 3996, 1715)
                        ) -> DataFrame:
     all_spectra = {}
@@ -25,7 +26,7 @@ def parse_many_spectra(spectra_dir: str,
             spectrum_path = spectra_dir / spectrum_name
             spectrum = opus_reader(spectrum_path)
             absorbance = spectrum.interpolate(*wave_info)[1]
-            all_spectra[change_ssn(spectrum_name)] = absorbance
+            all_spectra[change_ssn(spectrum_name, prefix)] = absorbance
         except Exception:
             unparsed_spectra += 1
 
