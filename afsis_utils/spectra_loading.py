@@ -34,6 +34,9 @@ def parse_many_spectra(spectra_dir: str,
     columns = np.linspace(*wave_info) \
         .astype(str)
     spectra_df = DataFrame.from_dict(all_spectra,
-                                     orient='index',
-                                     columns=columns)
+                                     orient='index')
+    spectra_df.columns = columns
     return spectra_df
+
+
+print(parse_many_spectra('test_out/'))
