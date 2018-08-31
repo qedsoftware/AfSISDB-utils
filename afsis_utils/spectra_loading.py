@@ -37,6 +37,3 @@ def parse_many_spectra(spectra_dir: str,
                                      orient='index')
     spectra_df.columns = columns
     return spectra_df
-
-
-print(parse_many_spectra('test_out/'))
