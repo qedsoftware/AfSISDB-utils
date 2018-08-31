@@ -1,7 +1,7 @@
 import numpy as np
 
 from os import listdir
-from os.path import basename
+from os.path import basename, splitext
 from brukeropusreader import opus_reader
 from tqdm import tqdm
 from pathlib import Path
@@ -9,7 +9,7 @@ from pandas import DataFrame
 
 
 def change_ssn(raw_ssn: str) -> str:
-    return 'icr' + basename(raw_ssn)
+    return 'icr' + splitext(basename(raw_ssn))[0]
 
 
 def parse_many_spectra(spectra_dir: str,
