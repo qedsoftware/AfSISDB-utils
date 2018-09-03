@@ -2,7 +2,7 @@ import requests
 from urllib.request import urlopen
 from pathlib import Path
 from tqdm import tqdm
-from typing import Tuple
+from typing import Tuple, Union
 from pandas import DataFrame
 
 SPECTRA_URL = 'https://afsisdb.qed.ai/cabinet/api/sample/' \
@@ -49,10 +49,15 @@ def get_spectra(group: str,
                 machine: str,
                 out_path: str,
                 credentials: Tuple[str, str],
-                base_url: str=SPECTRA_URL):
+                base_url: str=SPECTRA_URL,
+                limit: Union[bool, int]=False):
     out_path = Path(out_path)
     request_url = base_url.format(group=group, machine=machine)
+    i = 0
     for ssn, url in tqdm(urls_generator(request_url, credentials)):
+        if limit and (i >= limit):
+            break
+        i += 1
         data = fetch_from_bucket(url)
         save_file(out_path, ssn, data)
 
