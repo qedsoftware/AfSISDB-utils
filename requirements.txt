@@ -5,14 +5,26 @@
 #    pip-compile --output-file requirements.txt requirements.in
 #
 brukeropusreader==1.0
-certifi==2018.8.24        # via requests
-chardet==3.0.4            # via requests
-idna==2.7                 # via requests
-numpy==1.15.1             # via pandas
+    # via -r requirements.in
+certifi==2022.12.7
+    # via requests
+chardet==3.0.4
+    # via requests
+idna==2.7
+    # via requests
+numpy==1.15.1
+    # via pandas
 pandas==0.23.4
-python-dateutil==2.7.3    # via pandas
-pytz==2018.5              # via pandas
+    # via -r requirements.in
+python-dateutil==2.7.3
+    # via pandas
+pytz==2018.5
+    # via pandas
 requests==2.19.1
-six==1.11.0               # via python-dateutil
+    # via -r requirements.in
+six==1.11.0
+    # via python-dateutil
 tqdm==4.25.0
-urllib3==1.23             # via requests
+    # via -r requirements.in
+urllib3==1.23
+    # via requests
